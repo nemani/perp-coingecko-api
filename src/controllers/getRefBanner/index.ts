@@ -21,12 +21,12 @@ const getRefBanner = async (req, res, next) => {
   }
 
   const resultSvg = template(data);
-  // const resultPng = await sharp(Buffer.from(resultSvg))
-  //   .toFormat("png")
-  //   .toBuffer();
+  const resultPng = await sharp(Buffer.from(resultSvg))
+    .toFormat("png")
+    .toBuffer();
 
-  res.set("Content-Type", "image/svg+xml");
-  res.send("<html>" + resultSvg + "</html>");
+  res.set("Content-Type", "image/png");
+  res.send(resultPng);
 };
 
 export default getRefBanner;
