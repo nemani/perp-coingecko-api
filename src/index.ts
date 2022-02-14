@@ -16,6 +16,14 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+app.get("/ref", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/refInput.html"));
+});
+
+app.get("/ref.css", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/refInput.css"));
+});
+
 app.get("/pairs", controllers.getPairs);
 app.get("/pnl", controllers.getPnl);
 app.get("/refBanner", controllers.getRefBanner);
