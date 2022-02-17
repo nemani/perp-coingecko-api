@@ -7,7 +7,7 @@ const getRefBanner = async (req, res, next) => {
   const shape: string = req.query.shape || "square";
   const refCode: string = req.query.refCode;
   const QrPngString = await QRCode.toDataURL(
-    `https://perp.exchange/ref/${refCode}`
+    `https://app.perp.com/?referral=${refCode}`
   );
 
   const data = {
