@@ -33,7 +33,7 @@
                   Enter a valid referral code below and hit submit to create a
                   banner.
                 </p>
-                <form action="/refBanner" method="GET">
+                <form name="mainForm" action="/refBanner" method="GET">
                   <div class="flex items-center mt-4">
                     <div class="w-48 mr-4">
                       <input
@@ -43,21 +43,22 @@
                         value=""
                       />
                     </div>
-                    <div class="w-48 mr-4">
-                      <select
-                        class="text-white outline-none text-center w-full p-2 border border-white bg-transparent border-opacity-10 rounded-lg"
+                    <div class="w-48 mr-4 text-white">
+                      <input
+                        id="shrect"
+                        type="radio"
                         name="shape"
-                      >
-                        <option class="text-black" value="" disabled selected>
-                          Select Shape
-                        </option>
-                        <option class="text-black" value="rect">
-                          Rectangle
-                        </option>
-                        <option class="text-black" value="square">
-                          Square
-                        </option>
-                      </select>
+                        value="rect"
+                      />
+                      <label for="shrect">Rectangle</label>
+
+                      <input
+                        id="shshape"
+                        type="radio"
+                        name="shape"
+                        value="square"
+                      />
+                      <label for="shshape">Square</label>
                     </div>
                     <div>
                       <button
@@ -69,6 +70,21 @@
                     </div>
                   </div>
                 </form>
+
+                <div id="preview-rect" class="image hidden preview rect">
+                  <img
+                    height="500"
+                    width="500"
+                    src="refBanner?refCode=nemani&shape=rect"
+                  />
+                </div>
+                <div id="preview-square" class="image hidden preview square">
+                  <img
+                    height="500"
+                    width="500"
+                    src="refBanner?refCode=nemani&shape=square"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -76,4 +92,21 @@
       </div>
     </div>
   </body>
+  <script>
+    function toggle(selector) {
+      var selected = document.getElementById(`preview-${selector.value}`);
+      selected.classList.toggle("hidden");
+    }
+    var rad = document.mainForm.shape;
+    var prev = null;
+    for (var i = 0; i < rad.length; i++) {
+      rad[i].addEventListener("change", function () {
+        prev ? toggle(prev) : null;
+        if (this !== prev) {
+          prev = this;
+        }
+        toggle(prev);
+      });
+    }
+  </script>
 </html>
