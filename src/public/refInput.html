@@ -33,7 +33,7 @@
                   Enter a valid referral code below and hit submit to create a
                   banner.
                 </p>
-                <form name="mainForm" action="/refBanner" method="GET">
+                <form name="mainForm">
                   <div class="flex items-center mt-4">
                     <div class="w-48 mr-4">
                       <input
@@ -62,16 +62,17 @@
                       <label for="shshape">Square</label>
                     </div>
                     <div>
-                      <button
+                      <a
+                        id="download_link"
                         class="py-2 px-4 text-sm bg-perp-cyan text-perp-gray-300 hover:bg-perp-cyan-secondary font-semibold rounded-full flex items-center justify-center"
-                        type="submit"
+                        href="refBanner?refCode=[Your Code]&shape=rect"
+                        download="refCodeBanner"
                       >
-                        Generate
-                      </button>
+                        Download
+                      </a>
                     </div>
                   </div>
                 </form>
-
                 <div id="preview">
                   <img
                     id="preview_image"
@@ -114,8 +115,13 @@
 
     // Function to update image based on refCode and shape variables
     function update_src() {
+      var target = `refBanner?refCode=${code}&shape=${shape}`;
       var img = document.getElementById("preview_image");
-      img.src = `refBanner?refCode=${code}&shape=${shape}`;
+      img.src = target;
+
+      var link = document.getElementById("download_link");
+      link.href = target;
+      link.download = `${code}-${shape}`;
     }
 
     // Call it once to show rectangles
