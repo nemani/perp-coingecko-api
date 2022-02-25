@@ -5,6 +5,7 @@ import square from "./square";
 
 const getRefBanner = async (req, res, next) => {
   const shape: string = req.query.shape || "square";
+  const discount: string = req.query.discount || "20";
   const refCode: string = req.query.refCode;
   const type: string = req.query.type;
 
@@ -15,6 +16,7 @@ const getRefBanner = async (req, res, next) => {
   const data = {
     refCode,
     QrPngString,
+    discount,
   };
 
   let template = square;
