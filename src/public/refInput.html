@@ -43,25 +43,38 @@
                         value=""
                       />
                     </div>
-                    <div class="w-48 mr-4 text-white">
+                    <div class="w-48 mr-4">
                       <input
-                        id="shrect"
-                        type="radio"
-                        name="shape"
-                        value="rect"
-                        checked
+                        class="text-white outline-none text-center w-full p-2 border border-white bg-transparent border-opacity-10 rounded-lg"
+                        name="discount"
+                        placeholder="Enter Discount"
+                        value=""
                       />
-                      <label for="shrect">Rectangle</label>
-
-                      <input
-                        id="shshape"
-                        type="radio"
-                        name="shape"
-                        value="square"
-                      />
-                      <label for="shshape">Square</label>
                     </div>
-                    <div>
+                  </div>
+                  <div class="flex items-center mt-4">
+                    <div class="flex w-48 mr-4 text-white justify-evenly">
+                      <div>
+                        <input
+                          id="shrect"
+                          type="radio"
+                          name="shape"
+                          value="rect"
+                          checked
+                        />
+                        <label for="shrect">Rectangle</label>
+                      </div>
+                      <div>
+                        <input
+                          id="shshape"
+                          type="radio"
+                          name="shape"
+                          value="square"
+                        />
+                        <label for="shshape">Square</label>
+                      </div>
+                    </div>
+                    <div class="w-48 mr-4">
                       <a
                         id="download_link"
                         class="py-2 px-4 text-sm bg-perp-cyan text-perp-gray-300 hover:bg-perp-cyan-secondary font-semibold rounded-full flex items-center justify-center"
@@ -92,14 +105,22 @@
     //  Defaults
     var code = "[Your Code]";
     var shape = "rect";
+    var discount = "20";
 
     // Select Form elements
     var shape_radios = document.mainForm.shape;
     var input_ref = document.mainForm.refCode;
+    var input_discount = document.mainForm.discount;
 
     // Add event listener for refCode input
     input_ref.addEventListener("input", function (x) {
       code = x.target.value;
+      update_src();
+    });
+
+    // Add event listener for discount input
+    input_discount.addEventListener("input", function (x) {
+      discount = x.target.value;
       update_src();
     });
 
@@ -115,7 +136,7 @@
 
     // Function to update image based on refCode and shape variables
     function update_src() {
-      var target = `refBanner?refCode=${code}&shape=${shape}`;
+      var target = `refBanner?refCode=${code}&shape=${shape}&discount=${discount}`;
       var img = document.getElementById("preview_image");
       img.src = target;
 
